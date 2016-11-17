@@ -10,23 +10,29 @@ class Point {
 }
 
 Point[][] points;
+
+int[] params = new int[12];
+
+int i = 0;
+
 // point layout
-int wd = 10;
-int hd = 10;
-int r = 50;
+int wd = i++;
+int hd = i++;
+int r = i++;
 
 // coloring
-int h = 0;
-int s = 100;
-int b = 200;
+int h = i++;
+int s = i++;
+int b = i++;
 
-int hx = 4;
-int sx = 0;
-int bx = 0;
+int hx = i++;
+int sx = i++;
+int bx = i++;
 
-int hy = -3;
-int sy = 5;
-int by = 0;
+int hy = i++;
+int sy = i++;
+int by = i++;
+
 
 
 boolean drawParams;
@@ -34,17 +40,25 @@ boolean drawParams;
 void setup() {
   size(1000, 500);
   colorMode(HSB, 255);
-  //noLoop();
+  
+  i = 0;
+
+  params[wd] = 10;
+  params[hd] = 10;
+  params[r] = 50;
+  
+  params[b] = 50;
+  
   generatePoints();
 }
 
 void generatePoints() {
-  points = new Point[wd][hd];
-  for (int x = 0; x < wd; x++) {
-    for (int y = 0; y < hd; y++) {
+  points = new Point[params[wd]][params[hd]];
+  for (int x = 0; x < params[wd]; x++) {
+    for (int y = 0; y <params[hd]; y++) {
       points[x][y] = new Point(
-      x == 0 ? 0 : x == wd - 1 ? width : (int)random(-r, r) + x * width / wd, 
-      y == 0 ? 0 : y == hd - 1 ? height : (int)random(-r,  r) + y * height / hd);
+      x == 0 ? 0 : x == params[wd] - 1 ? width : (int)random(-params[r], params[r]) + x * width / params[wd], 
+      y == 0 ? 0 : y == params[hd] - 1 ? height : (int)random(-params[r],  params[r]) + y * height / params[hd]);
     }
   }
   drawImage();
@@ -57,16 +71,31 @@ void keyPressed() {
   
   if (key == 'p') drawParams = !drawParams;
   
-  
+  if (keyCode == UP && i > 0) {
+    i--;
+    println("up");
+  }
+  if (keyCode == DOWN && i < params.length - 1) {
+    i++;
+    println("down");
+  }
+  if (keyCode == LEFT) {
+    params[i] --;
+    if (i <= 3) generatePoints();
+  }
+  if (keyCode == RIGHT) {
+    params[i] ++;
+    if (i <= 3) generatePoints();
+  }
 }
 
 void drawParams() {
-  println("wef");
   stroke(0);
   fill(0);
   c = 0;
   param("x divisions", wd);
   param("y divisions", hd);
+  param("point randomness", r);
   
   param("base hue", h);
   param("base saturation", s);
@@ -82,16 +111,16 @@ void drawParams() {
 }
 
 int c;
-void param(String name, int val) {
-  println(name);
-  text(name + ": " + val, 100, 100 + c * 20);
+void param(String name, int index) {
+  //println(name);
+  text((index == i ? ">" : " ") + name + ": " + params[index], 100, 100 + c * 20);
   c++;
 }
 
 void drawImage() {
-  for (int x = 0; x < wd - 1; x++) {
-    for (int y = 0; y < hd - 1; y++) {
-      int c = color(hy * y + hx * x + h, sy * y + sx * x + s, by * y + bx * x + b);
+  for (int x = 0; x < params[wd] - 1; x++) {
+    for (int y = 0; y < params[hd] - 1; y++) {
+      int c = color(params[hy] * y + params[hx] * x + params[h], params[sy] * y + params[sx] * x + params[s], params[by] * y + params[bx] * x + params[b]);
       fill(c);
       stroke(c);
       beginShape();
