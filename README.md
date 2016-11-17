@@ -13,6 +13,6 @@
 5. Press ENTER to save the image. It will be saved in the sketch folder as "image.png". This can be edited in the source code, at the ````saveFrame()```` call.
 
 ## Examples
-![Example 1](https://raw.githubusercontent.com/Johannes-Larsson/wallpaper-generator/master/image.png)
+![Example 1](https://raw.githubusercontent.com/Johannes-Larsson/wallpaper-generator/70e3c561f2f39f5d1fa90eb265ca2aa57ac41517/image.png)
 ![Example 2](https://raw.githubusercontent.com/Johannes-Larsson/wallpaper-generator/master/image1.png)
 ![Example 3](https://raw.githubusercontent.com/Johannes-Larsson/wallpaper-generator/master/image2.png)
