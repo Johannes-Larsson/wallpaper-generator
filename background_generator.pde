@@ -124,10 +124,10 @@ void drawImage() {
       fill(c);
       stroke(c);
       beginShape();
-      vertex(points[x][y].x, points[x][y].y);
-      vertex(points[x + 1][y].x, points[x + 1][y].y);
-      vertex(points[x + 1][y + 1].x, points[x + 1][y + 1].y);
-      vertex(points[x][y + 1].x, points[x][y + 1].y);
+      vertex(points[x][y].x - 1, points[x][y].y - 1);
+      vertex(points[x + 1][y].x + 1, points[x + 1][y].y - 1);
+      vertex(points[x + 1][y + 1].x + 1, points[x + 1][y + 1].y + 1);
+      vertex(points[x][y + 1].x - 1, points[x][y + 1].y + 1);
       endShape();
     }
   }
