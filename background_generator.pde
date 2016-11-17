@@ -38,7 +38,7 @@ int by = i++;
 boolean drawParams;
 
 void setup() {
-  size(1000, 500);
+  size(1920, 1080);
   colorMode(HSB, 255);
   
   i = 0;
@@ -81,11 +81,11 @@ void keyPressed() {
   }
   if (keyCode == LEFT) {
     params[i] --;
-    if (i <= 3) generatePoints();
+    if (i < 3) generatePoints();
   }
   if (keyCode == RIGHT) {
     params[i] ++;
-    if (i <= 3) generatePoints();
+    if (i < 3) generatePoints();
   }
 }
 
